@@ -3,524 +3,19 @@ import time
 import random
 import os
 
-def clearConsole():
+def clearScreen():
     command = 'clear'
-    if os.name in ('nt', 'dos'):  # checks if using windows
+    if os.name in ('nt', 'dos'):  # checks if you're using windows
         command = 'cls'
     os.system(command)
-
-#misc. sprites
-other_pet = ['''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|                      |
-|        ___           |
-|       /*   \         |
-|      /    * \        |
-|     | *    * |       |
-|      \______/        |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|                      |
-|                      |
-|                      |
-|                      |
-|                      |
-|                      |
-+----------------------+''']
-
-#baby sprites
-baby_pet = ['''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|                      |
-|                      |
-|       ____           |
-|      / O O \         |
-|     |   _   |        |
-|      \_____/         |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      |
-|   _____              | 
-|   | = |              |
-|   '._.'              |
-|                      |
-|       ____           |
-|      / ^ ^ \         |
-|     |   o   |        |
-|      \_____/         |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|      *               |
-|    *                 |
-|     *                |
-|       ____           |
-|      / ^ ^ \         |
-|     |   _   |        |
-|      \_____/         |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|                O     |
-|        _____     O   |
-|       / ^ ^ \ o      |
-|   _O_|o_O__o_|o__    |
-|   |             |    |
-|    \___________/     |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|     Z                |
-|   Z                  |
-|    z   _____         |
-|       / _ _ \        |
-|    __|_______|__     |   
-|    |  =======  |     |
-|    |___________|     |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|                      |
-|        _____         |
-|       / ^ ^ \        |
-|    __|_______|__     |   
-|    |  =======  |     |
-|    |___________|     |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|       \  \           |
-|       /  /           |
-|       \  \           |
-|       ____           |
-|      / _ _ \         |
-|      \_____/         |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|                      |
-|                      |
-|                      |
-|       ____           |
-|      / _ _ \         |
-|      \_____/         |
-+----------------------+''','''
-+----------------------+
-|  __T__               |
-|   | |                | 
-|   | |                |
-|    T                 |
-|                      |
-|                      |
-|                      |
-|       ____           |
-|      / ~ ~ \         |
-|      \_____/         |
-+----------------------+''']
-
-#child sprites
-child_pet = ['''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|                      |
-|      ______          |
-|     / O  O  \        |
-|    |    _    |       |
-|    |         |       |
-|     \_______/        |
-+----------------------+''','''
-+----------------------+
-|                      |
-|    .-\_-.            | 
-|   |      |           |
-|    \_,._/            |
-|                      |
-|      ______          |
-|     / ^  ^  \        |
-|    |    O    |       |
-|    |         |       |
-|     \_______/        |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      |
-|     *                |
-|    *                 |
-|      *               |
-|      ______          |
-|     / ^  ^  \        |
-|    |    _    |       |
-|    |         |       |
-|     \_______/        |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|      ______      O   |
-|     / ^  ^  \ o      |
-|    |    _    |  O    |
-|  _O|o_O__o__O|o__    |
-|  |              |    |
-|   \____________/     |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|     Z                |
-|   Z                  |
-|    z ______          |
-|     / _  _  \        |
-|   _|_________|_      |   
-|   |  =======  |      |
-|   |___________|      |
-+----------------------+''','''
-+----------------------+
-|                      | 
-|                      |
-|                      |
-|                      |
-|                      |
-|      ______          |
-|     / ^  ^  \        |
-|   _|_________|_      |   
-|   |  =======  |      |
-|   |___________|      |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|       \  \           |
-|       /  /           |
-|       \  \           |
-|      ______          |
-|     / _   _ \        |
-|    |    _    |       |
-|     \_______/        |
-+----------------------+''','''
-+----------------------+
-|                      | 
-|                      |
-|                      |
-|                      |
-|                      |
-|                      |
-|      ______          |
-|     / _   _ \        |
-|    |    A    |       |
-|     \_______/        |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|                      |
-|                      |
-|      ______          |
-|     / X   X \        |
-|    |    _    |       |
-|     \_______/        |
-+----------------------+''','''
-+----------------------+
-|  __T__               |
-|   | |                | 
-|   | |                |
-|    T                 |
-|                      |
-|                      |
-|      ______          |
-|     / ~   ~ \        |
-|    |    -    |       |
-|     \_______/        |
-+----------------------+''']
-
-#teen sprites
-teen_pet =['''
-+----------------------+
-|                      | 
-|                      |
-|                      |
-|                      |
-|      _______         |
-|     / O   O  \       |
-|    |    _     |      |
-|   /|          |\     |
-|     \_ ____ _/       |   
-|      |_|  |_|        |
-+----------------------+''','''
-+----------------------+
-|                      |
-|    .-\_-.            | 
-|   |      |           |
-|    \_,._/            |
-|      _______         |
-|     / ^   ^  \       |
-|   \|    O     |/     |
-|    |          |      |
-|     \_ ____ _/       |   
-|      |_|  |_|        |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      |
-|     *                |
-|   *                  |
-|    * _______         |
-|     / ^   ^  \       |
-|   \|    -     |/     |
-|    |          |      |
-|     \_ ____ _/       |   
-|      |_|  |_|        |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|      _______    O    |
-|     / ^   ^  \ o     |
-|    |    _     | O    |
-|  _O|o_O__o__O_|o_    |
-|  |              |    |
-|   \____________/     |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|     Z                |
-|   Z                  |
-|    z _______         |
-|     / _   _  \       |
-|   _|__________|_     |   
-|   |  ========  |     |
-|   |____________|     |
-+----------------------+ ''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|                      |
-|      _______         |
-|     / ^   ^  \       |
-|   \|__________|/     |   
-|   |  ========  |     |
-|   |____________|     |
-+----------------------+''',''' 
-+----------------------+
-|                      |
-|                      | 
-|       \   \          |
-|       /   /          |
-|       \   \          |
-|      _______         |
-|     / _   _  \       |
-|   /|    _     |\     |
-|     \_ ____ _/       |   
-|      |_|  |_|        |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|                      |
-|      _______         |
-|     / _   _  \       |
-|   /|    A     |\     |
-|     \_ ____ _/       |   
-|      |_|  |_|        |
-+----------------------+''','''
-+----------------------+
-|                      | 
-|                      |
-|                      |
-|                      | 
-|                      |
-|                      |
-|      _______         |
-|     / X   X  \       |
-|   /|    -     |\     |
-|     \_ ____ _/       |  
-+----------------------+''','''
-+----------------------+
-|  __T__               |
-|   | |                | 
-|   | |                |
-|    T                 |
-|                      |
-|      _______         |
-|     / ~   ~  \       |
-|   /|    -     |\     |
-|     \_ ____ _/       |   
-|      |_|  |_|        |
-+----------------------+''']
-
-#adult sprites
-adult_pet =['''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|       !!__!!         |
-|      / o  o \        |
-|     |   __   |       |
-|     /|      |\       |
-|    //        \\\      |
-|     |_ ____ _|       |   
-|      |_|  |_|        |
-+----------------------+''','''
-+----------------------+
-| .-\_-.               | 
-||      |              |
-| \_,._/               |                 
-|       !!__!!         |
-|      / ^  ^ \        |
-|    \|   O    |/      |
-|     \|      |/       |
-|     /        \       |
-|     |_ ____ _|       |   
-|      |_|  |_|        |
-+----------------------+''','''
-+----------------------+
-|                      |
-|     *                | 
-|   *                  |
-|    *  !!__!!         |
-|      / ^  ^ \        |
-|    \|   __   |/      |
-|     \|      |/       |
-|     /        \       |
-|     |_ ____ _|       |   
-|      |_|  |_|        |
-+----------------------+''','''
-+----------------------+
-|                      | 
-|                      |
-|                      |
-|                      |
-|        !!__!!   O    |
-|       / ^  ^ \ o     |
-|      |   __   | O    |
-|   _O__|o_O__O|o___   |
-|   |              |   |
-|    \____________/    |
-+----------------------+''','''
-+----------------------+
-|                      | 
-|                      |
-|     Z                |
-|    Z                 |
-|     z !!__!!         |
-|      / _  _ \        |
-|     |   __   |       |
-|   ___|______|___     |   
-|   |  ========  |     |
-|   |____________|     |
-+----------------------+ ''','''
-+----------------------+
-|                      | 
-|                      |
-|                      |
-|                      |
-|       !!__!!         |
-|      / ^  ^ \        |
-|    \|   o    |/      |
-|   __\|______|/__     |   
-|   |  ========  |     |
-|   |____________|     |
-+----------------------+ ''','''
-+----------------------+
-|                      |
-|         \            | 
-|    \    /    \       |
-|    /    \    /       |
-|    \  !!__!! \       |
-|      / _  _ \        |
-|     |   __   |       |
-|     /|      |\       |
-|    //________\\\      |   
-|      |_|  |_|        |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|       !!__!!         |
-|      / _  _ \        |
-|     |    A   |       |
-|     /|      |\       |
-|    //________\\\      |   
-|      |_|  |_|        |
-+----------------------+''','''
-+----------------------+
-|                      |
-|                      | 
-|                      |
-|                      |
-|       !!__!!         |
-|      / X  X \        |
-|     |   __   |       |
-|     /|      |\       |
-|    //________\\\      |   
-|      |_|  |_|        |
-+----------------------+''','''
-+----------------------+
-|  __T__               |
-|   | |                | 
-|   | |                |
-|    T                 |
-|       !!__!!         |
-|      / ~  ~ \        |
-|     |    -   |       |
-|     /|      |\       |
-|    //________\\\      |   
-|      |_|  |_|        |
-+----------------------+''']
 
 playing = True #controls the entire game loop
 dead = False #controls the main gameplay loop
 slept_recently = False #used to prevent stat drain when pet wakes up
 elder_death = False #used to provide a special message for natural death
 guesses = 0 #used to score one of the games
+
+from pet_sprites import other_pet, baby_pet, child_pet, teen_pet, adult_pet
 
 class pypet: #This class contains all of the pet's stats and many of the methods related to managing them
     
@@ -824,7 +319,7 @@ class pypet: #This class contains all of the pet's stats and many of the methods
             time.sleep(2)
             print()
         else:
-            clearConsole()
+            clearScreen()
             if (self.life_stage == "baby"):
                 print(baby_pet[1])
             elif (self.life_stage == "child"):
@@ -847,7 +342,7 @@ class pypet: #This class contains all of the pet's stats and many of the methods
     #This lets you bathe your pet and restore their hygiene need
     def clean(self):
         print()
-        clearConsole()
+        clearScreen()
         if (self.life_stage == "baby"):
             print(baby_pet[3])
         elif (self.life_stage == "child"):
@@ -871,7 +366,7 @@ class pypet: #This class contains all of the pet's stats and many of the methods
     #This lets you play with your pet and restore their fun need
     def play(self):
         print()
-        clearConsole()
+        clearScreen()
         if (self.life_stage == "baby"):
             print(baby_pet[2])
         elif (self.life_stage == "child"):
@@ -921,7 +416,7 @@ class pypet: #This class contains all of the pet's stats and many of the methods
             time.sleep(2)
             print()
         else:
-            clearConsole()
+            clearScreen()
             if (self.life_stage == "baby"):
                 print(baby_pet[4])
             elif (self.life_stage == "child"):
@@ -936,7 +431,7 @@ class pypet: #This class contains all of the pet's stats and many of the methods
             print(self.name,"is sleeping...")
             time.sleep(2)
             
-            clearConsole()
+            clearScreen()
             if (self.life_stage == "baby"):
                 print(baby_pet[4])
             elif (self.life_stage == "child"):
@@ -958,7 +453,7 @@ class pypet: #This class contains all of the pet's stats and many of the methods
             dead = self.health_life_check()
             
             if (dead == False):
-                clearConsole()
+                clearScreen()
                 if (self.life_stage == "baby"):
                     print(baby_pet[5])
                 elif (self.life_stage == "child"):
@@ -990,7 +485,7 @@ class pypet: #This class contains all of the pet's stats and many of the methods
             time.sleep(2)
             print()
         else:
-            clearConsole()
+            clearScreen()
             if (self.life_stage == "baby"):
                 print(baby_pet[8])
             elif (self.life_stage == "child"):
@@ -1084,7 +579,7 @@ class pypet: #This class contains all of the pet's stats and many of the methods
             return 4
 
 def print_instructions(): #prints the game instructions
-    clearConsole()
+    clearScreen()
     print("PyPet is a simple virtual pet simulator designed in the style of Tamagotchi.")
     print("Taking good care of your pet involves managing its 5 needs: Hunger, Fun, Hygiene, Sleep, and Health.")
     print(baby_pet[0])    
@@ -1322,7 +817,7 @@ def number_game(): #A simple number guessing game you can play with your pet to 
 
 while (playing == True): #This loop contains the actual gameplay
 
-    clearConsole()
+    clearScreen()
     print(other_pet[0])
     print("Welcome to PyPet!")
     game_start = True
@@ -1346,7 +841,7 @@ while (playing == True): #This loop contains the actual gameplay
         print_instructions()
         input("Press Enter to start the game...")
 
-        clearConsole()
+        clearScreen()
         print(other_pet[0])
         print("Welcome to PyPet!")
         pass
@@ -1385,7 +880,7 @@ while (playing == True): #This loop contains the actual gameplay
             print("Sorry, I didn't get that.")
             continue
 
-    clearConsole()
+    clearScreen()
 
     print(baby_pet[0])    
     print("Your pet is named",'\033[1m'+pet.name+'\033[0m',"and its age is",'\033[1m'+str(pet.age)+'\033[0m'+".")
@@ -1404,7 +899,7 @@ while (playing == True): #This loop contains the actual gameplay
             playing = False
             break
         else:
-            clearConsole()
+            clearScreen()
             
             if (pet.life_stage == "baby"):
                 if (pet.clean_need < 35):
@@ -1571,7 +1066,7 @@ while (playing == True): #This loop contains the actual gameplay
 
     #All the stuff down here is what displays if your pets runs away (baby) or dies (child or older), effectively ending the game unless you start over
 
-    clearConsole()
+    clearScreen()
 
     if (pet.life_stage == "baby"):
         print(other_pet[1])
