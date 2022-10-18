@@ -1,6 +1,5 @@
 # PyPet
  This is a python command line game reminiscent of Tamagotchi virtual pets. Instructions are below, but can also be accessed at the beginning of the game:
- 
  <pre>
 +----------------------+
 |                      |
