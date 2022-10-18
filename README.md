@@ -1,6 +1,7 @@
 # PyPet
  This is a python command line game reminiscent of Tamagotchi virtual pets. Instructions are below, but can also be accessed at the beginning of the game:
-
+ 
+ <pre>
 +----------------------+
 |                      |
 |                      |
@@ -40,4 +41,5 @@ Your pet's health need is only adversely affected if it's hunger and/or hygiene 
 Your pet will age by one day every time it sleeps, whether you send it to bed or it passes out from lack of sleep.
 Be especially mindful of your pet's stats near its birthday -- how you take care of it can determine its personality!
 Take good care of your pet, and it will live a long and happy life! But if you neglect it...well...
+</pre>
 
