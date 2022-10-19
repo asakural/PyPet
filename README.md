@@ -1,5 +1,5 @@
 # PyPet
- This is a python command line game inspired by Tamagotchi virtual pets. I created this game primarily over a few weeks in April-May 2022 as a personal coding project and have occasionally modified it since. 
+ This is a python command line game inspired by Tamagotchi virtual pets. I created this game primarily over a few weeks in April-May 2022 as a personal coding project and have worked on it occasionally ever since.
  
  ## Features
 The gameplay revolves around caring for your pet's needs. If you care for your pet adequately, you can watch it grow through different life stages until it passes away naturally. While this is simple in practice, the player's caregiving skills not only determine whether or not your pet will survive, but they can also directly impact the pet's core personality trait. This trait can either negatively or positively affect how quickly their their needs. Additionally, the player has the choice to leave their pet to its own devices sometimes. Your pet's personality can influence their actions, and their actions can affect their needs as well.
