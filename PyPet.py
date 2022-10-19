@@ -1,3 +1,5 @@
+
+from pet_sprites import other_pet, baby_pet, child_pet, teen_pet, adult_pet
 from pickle import FALSE
 import time
 import random
@@ -14,8 +16,6 @@ dead = False #controls the main gameplay loop
 slept_recently = False #used to prevent stat drain when pet wakes up
 elder_death = False #used to provide a special message for natural death
 guesses = 0 #used to score one of the games
-
-from pet_sprites import other_pet, baby_pet, child_pet, teen_pet, adult_pet
 
 class pypet: #This class contains all of the pet's stats and many of the methods related to managing them
     
