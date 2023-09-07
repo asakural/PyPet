@@ -634,7 +634,7 @@ def pass_out(): # Your pet will pass out if it gets too tired
         print(pet.name,"woke up! But passing out is no fun :(")
         time.sleep(2)
 
-def idle(): #This prints your pet's stats, checks to make sure they aren't going to die, and performs stat decay
+def idle(): #This prints your pet's stats, checks to make sure it isn't going to die, and performs stat decay
     print("Your pet is named",'\033[1m'+pet.name+'\033[0m',"and its age is",'\033[1m'+str(pet.age)+'\033[0m'+".")
     print("Your pet's life stage is:",'\033[1m'+pet.life_stage+'\033[0m')
     pet.birthday()
@@ -703,15 +703,15 @@ def idle_action(): #This decides what your pet will do if you don't give a comma
     elif (idle_action == 6):
         outside = random.randint(1,3)
         if (outside == 1):
-            print(pet.name,"decided to wander around, and they had a good time!")
+            print(pet.name,"decided to wander around, and it had a good time!")
             pet.fun_need += 30
             time.sleep(2)
         elif (outside == 2):
-            print(pet.name,"decided to wander around, but they didn't find anything cool.")
+            print(pet.name,"decided to wander around, but it didn't find anything cool.")
             pet.fun_need -= 10
             time.sleep(2)
         elif (outside == 3 and pet.health_need >= 70):
-            print(pet.name,"decided to wander around, but they got hurt!")
+            print(pet.name,"decided to wander around, but it got hurt!")
             pet.fun_need -= 15
             if (pet.personality == "sickly"):
                 pet.health_need -= random.randint (10,20)
@@ -719,7 +719,7 @@ def idle_action(): #This decides what your pet will do if you don't give a comma
                 pet.health_need -= random.randint(5,15)
             time.sleep(2)
         else: 
-            print(pet.name,"decided to wander around, but they didn't find anything cool.")
+            print(pet.name,"decided to wander around, but it didn't find anything cool.")
             pet.fun_need -= 10
             time.sleep(2)
     
@@ -733,7 +733,7 @@ def idle_action(): #This decides what your pet will do if you don't give a comma
             pet.hunger_need += random.randint(5,20)
             time.sleep(2)
         elif (food == 2):
-            print(pet.name,"searched around your house to find some food, but they didn't find anything.")
+            print(pet.name,"searched around your house to find some food, but it didn't find anything.")
             pet.fun_need -= random.randint(1,5)
             time.sleep(2)
         elif (food == 3 and pet.health_need >= 70):
